@@ -1,0 +1,192 @@
+# -*- coding: utf-8 -*-
+"""
+/***************************************************************************
+ ShortcutManager
+                                 A QGIS plugin
+ This plugin create shortcuts in toolbar
+                              -------------------
+        begin                : 2014-07-18
+        git sha              : $Format:%H$
+        copyright            : (C) 2014 by NextGIS
+        email                : info@nextgis.ru
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+"""
+from shortcut import Shorcut, shortcutsFromSettings
+from shortcut_manager_dialog import ShortcutManagerDialog 
+from shortcut_action import ShorcutAction
+from shortcut_widget import ShortcutWidget
+
+from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
+from PyQt4.QtGui import QAction, QIcon
+
+import os
+
+class ShortcutManager:
+    def __init__(self, iface):
+        self._iface = iface
+        
+        self.shortcuts = shortcutsFromSettings()
+        
+        # create actions
+        self.actions = []
+        for shortcut in self.shortcuts:
+            action = ShorcutAction(self._iface, shortcut)
+            self.actions.append(action)
+        
+        # crater shortcut widgets
+        self.shortcutWidgets = []
+        for shortcut in self.shortcuts:
+            self.shortcutWidgets.append(ShortcutWidget(None,shortcut))
+            
+        #create manager dialoog
+        self.dialog = ShortcutManagerDialog(None, self.createShortcut)
+        for shortcutWidget in self.shortcutWidgets:
+            self.dialog.addShortcut(shortcutWidget)
+    
+    def createShortcut(self, name, uri, icon):
+        shortcut = Shorcut(name, uri, icon)
+        
+        self.shortcuts.append(shortcut)
+        self.actions.append(ShorcutAction(self._iface, shortcut))
+        self.dialog.addShortcut(ShortcutWidget(None,shortcut))
+    #def __del__(self):
+    #    print "Manager __del__"
+    #    for action in self.actions:
+    #        self._iface.removeToolBarIcon(action)
+    
+    #TODO bad decision
+    def delete(self): 
+        for action in self.actions:
+            self._iface.removeToolBarIcon(action)
+
+class ShortcutManagerPlugin:
+    """QGIS Plugin Implementation."""
+
+    def __init__(self, iface):
+        """Constructor.
+
+        :param iface: An interface instance that will be passed to this class
+            which provides the hook by which you can manipulate the QGIS
+            application at run time.
+        :type iface: QgsInterface
+        """
+        # Save reference to the QGIS interface
+        self.iface = iface
+        # initialize plugin directory
+        self.plugin_dir = os.path.dirname(__file__)
+        # initialize locale
+        locale = QSettings().value('locale/userLocale')[0:2]
+        locale_path = os.path.join(
+            self.plugin_dir,
+            'i18n',
+            'ShortcutManager_{}.qm'.format(locale))
+        
+        print "locale_path: ", locale_path
+        
+        if os.path.exists(locale_path):
+            self.translator = QTranslator()
+            self.translator.load(locale_path)
+
+            if qVersion() > '4.3.3':
+                QCoreApplication.installTranslator(self.translator)
+
+        # Declare instance attributes
+        self.actions = []
+        self.menu = self.tr(u'&Shortcut Manager')
+        
+        #self.toolbar = self.iface.addToolBar(u'ShortcutManager')
+        #self.toolbar.setObjectName(u'ShortcutManager')
+        
+        self.manager = ShortcutManager(self.iface)
+    # noinspection PyMethodMayBeStatic
+    def tr(self, message):
+        """Get the translation for a string using Qt translation API.
+
+        We implement this ourselves since we do not inherit QObject.
+
+        :param message: String for translation.
+        :type message: str, QString
+
+        :returns: Translated version of message.
+        :rtype: QString
+        """
+        return QCoreApplication.translate('ShortcutManager', message)
+
+
+    def add_action(
+        self,
+        icon,
+        text,
+        callback,
+        enabled_flag=True,
+        add_to_menu=True,
+        add_to_toolbar=True,
+        status_tip=None,
+        whats_this=None,
+        parent=None):
+
+        action = QAction(icon, text, parent)
+        action.triggered.connect(callback)
+        action.setEnabled(enabled_flag)
+
+        if status_tip is not None:
+            action.setStatusTip(status_tip)
+
+        if whats_this is not None:
+            action.setWhatsThis(whats_this)
+
+        if add_to_toolbar:
+            #self.toolbar.addAction(action)
+            self.iface.addToolBarIcon(action)
+
+        if add_to_menu:
+            self.iface.addPluginToMenu(
+                self.menu,
+                action)
+
+        self.actions.append(action)
+
+        return action
+
+    def initGui(self):
+        """Create the menu entries and toolbar icons inside the QGIS GUI."""
+        
+        shortcutManageIcon = QIcon(":/ShortcutManager/icons/icon.png" )
+        shortcutManageText = "Shortcut manager"
+        self.add_action(
+            shortcutManageIcon,
+            shortcutManageText,
+            callback=self.run,
+            parent=self.iface.mainWindow(),
+            add_to_toolbar = False)
+
+    def unload(self):
+        """Removes the plugin menu item and icon from QGIS GUI."""
+        for action in self.actions:
+            self.iface.removePluginMenu(
+                self.tr(u'&Shortcut Manager'),
+                action)
+            self.iface.removeToolBarIcon(action)
+        self.manager.delete()
+
+    def run(self):
+        """Run method that performs all the real work"""
+        self.manager.dialog.show()
+        
+        # Run the dialog event loop
+        result = self.manager.dialog.exec_()
+        
+        # See if OK was pressed
+        if result:
+            # Do something useful here - delete the line containing pass and
+            # substitute with your code.
+            pass
