@@ -127,5 +127,3 @@ class Ui_ShortcutSettings(object):
         self.label_2.setText(QtGui.QApplication.translate("ShortcutSettings", "URI:", None, QtGui.QApplication.UnicodeUTF8))
         self.label_3.setText(QtGui.QApplication.translate("ShortcutSettings", "Icon:", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("ShortcutSettings", "Name:", None, QtGui.QApplication.UnicodeUTF8))
-
-import resources_rc

@@ -39,5 +39,5 @@ def classFactory(iface):  # pylint: disable=invalid-name
     :type iface: QgsInterface
     """
     #
-    from shortcut_manager import ShortcutManagerPlugin
+    from .shortcut_manager import ShortcutManagerPlugin
     return ShortcutManagerPlugin(iface)

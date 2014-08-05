@@ -151,4 +151,3 @@ class Ui_CreateShortcutWizard(object):
         self.label_7.setText(QtGui.QApplication.translate("CreateShortcutWizard", "Icon by default the specified element:", None, QtGui.QApplication.UnicodeUTF8))
         self._chooseIcon_Btn.setText(QtGui.QApplication.translate("CreateShortcutWizard", "Choose another...", None, QtGui.QApplication.UnicodeUTF8))
 
-import resources_rc

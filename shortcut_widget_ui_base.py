@@ -65,5 +65,3 @@ class Ui_ShortcutWidget(object):
         self.deleteButton.setText(QtGui.QApplication.translate("ShortcutWidget", "Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.editButton.setText(QtGui.QApplication.translate("ShortcutWidget", "Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.shortcutName.setText(QtGui.QApplication.translate("ShortcutWidget", "shortcutName", None, QtGui.QApplication.UnicodeUTF8))
-
-import resources_rc
