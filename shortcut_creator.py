@@ -20,7 +20,7 @@ class ShortcutCreator(QWizard, Ui_CreateShortcutWizard):
         QObject.connect(self._chooseIcon_Btn, SIGNAL("clicked()"), self._chooseIcon)
     
     def accept(self):
-        if self._iconPath != None:
+        if self._iconPath is not None:
             if self._iconPath.lower().find(default_icons_dir.lower()) == 0:
                 self._iconPath = self._iconPath[len(default_icons_dir)+1:]
         
@@ -46,9 +46,9 @@ class ShortcutCreator(QWizard, Ui_CreateShortcutWizard):
         return True
     def _processEnterInPage(self, pageIndex):
         if pageIndex == 2:
-            if self._iconPath == None:
+            if self._iconPath is None:
                 shortcutIcon = getIconByURL(self._getShortcutType(), self._shortcutURI.text())
-                if shortcutIcon == None:
+                if shortcutIcon is None:
                     shortcutIcon = getDefaultIcon(self._getShortcutType())
             
                 self._shortcutIcon.setPixmap(shortcutIcon.pixmap(QSize(32,32)))

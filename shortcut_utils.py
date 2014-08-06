@@ -1,19 +1,19 @@
 import os
 
-from PyQt4.QtGui import QIcon, QPixmap
+from PyQt4.QtGui import QIcon, QPixmap, QImage
 
 from __init__ import default_icons_dir
 
 def getShortcutIcon(iconPath = None, uri = None):
-    if iconPath != None:
+    if iconPath is not None:
         if os.path.exists(iconPath):
             return QIcon(iconPath)
         elif os.path.exists( os.path.join(default_icons_dir,iconPath) ):
             return QIcon( os.path.join(default_icons_dir,iconPath) )
 
-    elif uri != None:
+    elif uri is not None:
         shortcutIcon = getIconByURL(getShortcutType(uri), uri)
-        if shortcutIcon == None:
+        if shortcutIcon is None:
             return getDefaultIcon(getShortcutType(uri))
         else:
             return shortcutIcon
@@ -63,19 +63,15 @@ def _getWebFavIcon(url):
     import requests
     
     shortcutURL = find_favicon_from_url(url)
-    if shortcutURL != None:
+    
+    if shortcutURL is not None:
         r = requests.get(shortcutURL)
-        
-        image_filename = os.tempnam()
-        f = open(image_filename,"w")
-        f.write(r.content)
-        
-        return QIcon(image_filename)
+        return QIcon(QPixmap.fromImage(QImage.fromData(r.content)))
     else:
         return None
 
 def getShortcutType(uri):
-    if uri == None:
+    if uri is None:
         return "unknown"
     
     if uri[0:7] == "http://":

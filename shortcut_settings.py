@@ -16,7 +16,7 @@ class ShortcutSettings(QDialog, Ui_ShortcutSettings):
         self._shortcut = shortcut
         
         self._shortcutName_le.setText(self._shortcut.name)
-        if self._shortcut.uri != None:
+        if self._shortcut.uri is not None:
             self._shortcutURI_le.setText(self._shortcut.uri)
         
         shortcutIcon = getShortcutIcon(
@@ -57,7 +57,7 @@ class ShortcutSettings(QDialog, Ui_ShortcutSettings):
         self.shortcutNewName = self._shortcutName_le.text()
         self.shortcutNewURI = self._shortcutURI_le.text()
         
-        if self._shortcutNewIcon != None:
+        if self._shortcutNewIcon is not None:
             if self._shortcutNewIcon.lower().find(default_icons_dir.lower()) == 0:
                 self._shortcutNewIcon = self._shortcutNewIcon[len(default_icons_dir)+1:]
         

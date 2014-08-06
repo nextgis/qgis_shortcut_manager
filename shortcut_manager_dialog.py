@@ -27,7 +27,8 @@ from PyQt4.QtGui import QDialog
 from PyQt4.QtCore import QObject, SIGNAL
 
 class ShortcutManagerDialog(QDialog, Ui_ShortcutManagerDialog):
-    def __init__(self, parent, createShortcutFunction):
+    #def __init__(self, parent, createShortcutFunction):
+    def __init__(self, parent, manager):
         """Constructor."""
         QDialog.__init__(self)
         
@@ -35,13 +36,15 @@ class ShortcutManagerDialog(QDialog, Ui_ShortcutManagerDialog):
 
         QObject.connect(self.pushButton, SIGNAL("clicked()"), self.createShortcut)
         
-        self._createShortcutFunction = createShortcutFunction
+        #self._createShortcutFunction = createShortcutFunction
+        self._manager = manager
     
     def addShortcut(self, shortcutWidget):
         self.shorcutWidgetsContainer.addWidget(shortcutWidget)
     
     def createShortcut(self):
-        dlg = ShortcutCreator(self, self._createShortcutFunction)
+        #dlg = ShortcutCreator(self, self._createShortcutFunction)
+        dlg = ShortcutCreator(self, self._manager.createShortcut)
         dlg.show()
         # Run the dialog event loop
         result = dlg.exec_()

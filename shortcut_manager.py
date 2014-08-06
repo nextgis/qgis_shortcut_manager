@@ -29,7 +29,8 @@ from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt4.QtGui import QAction, QIcon
 
 import os
-        
+import weakref
+
 class ShortcutManager:
     def __init__(self, iface):
         self._iface = iface
@@ -42,7 +43,8 @@ class ShortcutManager:
             self._actions.append(ShorcutAction(self._iface, shortcut))
             
         #create manager dialoog
-        self.dialog = ShortcutManagerDialog(None, self.createShortcut)
+        #self.dialog = ShortcutManagerDialog(None, self.createShortcut)
+        self.dialog = ShortcutManagerDialog(None, weakref.proxy(self))
         for shortcut in self._shortcuts:
             self.dialog.addShortcut(ShortcutWidget(None,shortcut))
 
@@ -62,7 +64,7 @@ class ShortcutManager:
     def unload(self): 
         for action in self._actions:
             self._iface.removeToolBarIcon(action)
-        del self.dialog
+        #del self.dialog
         
 class ShortcutManagerPlugin:
     """QGIS Plugin Implementation."""
@@ -173,7 +175,9 @@ class ShortcutManagerPlugin:
             self.iface.removeToolBarIcon(action)
         
         self.manager.unload()
-        del self.manager
+        #del self.manager
+
+        #print '{} objects collected'.format(gc.collect())
 
     def run(self):
         """Run method that performs all the real work"""
