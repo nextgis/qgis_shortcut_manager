@@ -29,51 +29,47 @@ from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt4.QtGui import QAction, QIcon
 
 import os
-
+        
 class ShortcutManager:
     def __init__(self, iface):
         self._iface = iface
         
-        self.shortcuts = shortcutsFromSettings()
+        self._shortcuts = shortcutsFromSettings()
         
         # create actions
-        self.actions = []
-        for shortcut in self.shortcuts:
-            action = ShorcutAction(self._iface, shortcut)
-            self.actions.append(action)
-        
-        # crater shortcut widgets
-        self.shortcutWidgets = []
-        for shortcut in self.shortcuts:
-            self.shortcutWidgets.append(ShortcutWidget(None,shortcut))
+        self._actions = []
+        for shortcut in self._shortcuts:
+            self._actions.append(ShorcutAction(self._iface, shortcut))
             
         #create manager dialoog
         self.dialog = ShortcutManagerDialog(None, self.createShortcut)
-        for shortcutWidget in self.shortcutWidgets:
-            self.dialog.addShortcut(shortcutWidget)
-    
+        for shortcut in self._shortcuts:
+            self.dialog.addShortcut(ShortcutWidget(None,shortcut))
+
     def createShortcut(self, name, uri, icon):
         shortcut = Shorcut(name, uri, icon)
         
-        self.shortcuts.append(shortcut)
-        self.actions.append(ShorcutAction(self._iface, shortcut))
+        self._shortcuts.append(shortcut)
+        self._actions.append(ShorcutAction(self._iface, shortcut))
         self.dialog.addShortcut(ShortcutWidget(None,shortcut))
+        #pass
+        
     #def __del__(self):
-    #    print "Manager __del__"
     #    for action in self.actions:
     #        self._iface.removeToolBarIcon(action)
     
     #TODO bad decision
-    def delete(self): 
-        for action in self.actions:
+    def unload(self): 
+        for action in self._actions:
             self._iface.removeToolBarIcon(action)
-
+        del self.dialog
+        
 class ShortcutManagerPlugin:
     """QGIS Plugin Implementation."""
 
     def __init__(self, iface):
         """Constructor.
-
+        
         :param iface: An interface instance that will be passed to this class
             which provides the hook by which you can manipulate the QGIS
             application at run time.
@@ -90,8 +86,6 @@ class ShortcutManagerPlugin:
             'i18n',
             'ShortcutManager_{}.qm'.format(locale))
         
-        print "locale_path: ", locale_path
-        
         if os.path.exists(locale_path):
             self.translator = QTranslator()
             self.translator.load(locale_path)
@@ -107,6 +101,7 @@ class ShortcutManagerPlugin:
         #self.toolbar.setObjectName(u'ShortcutManager')
         
         self.manager = ShortcutManager(self.iface)
+
     # noinspection PyMethodMayBeStatic
     def tr(self, message):
         """Get the translation for a string using Qt translation API.
@@ -176,7 +171,9 @@ class ShortcutManagerPlugin:
                 self.tr(u'&Shortcut Manager'),
                 action)
             self.iface.removeToolBarIcon(action)
-        self.manager.delete()
+        
+        self.manager.unload()
+        del self.manager
 
     def run(self):
         """Run method that performs all the real work"""

@@ -36,7 +36,24 @@ class ShortcutSettings(QDialog, Ui_ShortcutSettings):
             self._shortcutNewIcon = os.path.normpath(unicode(fileName))
             self._shortcutIcon_l.setPixmap( QIcon(self._shortcutNewIcon).pixmap(QSize(32,32)) )
     
+    def _validatePage(self):
+        isValid = True
+        
+        if self._shortcutName_le.text() == "":
+            self._shortcutName_le.setPlaceholderText(self.tr("Please, fill this field"))
+            isValid = False
+        
+        if self._shortcutURI_le.text() == "":
+            self._shortcutURI_le.setPlaceholderText(self.tr("Please, fill this field"))
+            isValid = False
+    
+        return isValid
+    
     def accept(self):
+        
+        if self._validatePage() == False:
+            return
+        
         self.shortcutNewName = self._shortcutName_le.text()
         self.shortcutNewURI = self._shortcutURI_le.text()
         

@@ -38,7 +38,7 @@ class ShortcutManagerDialog(QDialog, Ui_ShortcutManagerDialog):
         self._createShortcutFunction = createShortcutFunction
     
     def addShortcut(self, shortcutWidget):
-        self.shorcutWidgetsContainer.addWidget(shortcutWidget, 0)
+        self.shorcutWidgetsContainer.addWidget(shortcutWidget)
     
     def createShortcut(self):
         dlg = ShortcutCreator(self, self._createShortcutFunction)
