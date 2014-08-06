@@ -10,7 +10,7 @@
 name=Shortcut Manager
 qgisMinimumVersion=2.0
 description=This plugin create shortcuts in toolbar
-version=1.0.1
+version=1.0.2
 author=NextGIS
 email=info@nextgis.ru
 
