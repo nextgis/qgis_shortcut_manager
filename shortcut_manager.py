@@ -20,6 +20,9 @@
  *                                                                         *
  ***************************************************************************/
 """
+
+import resources_rc
+
 from shortcut import Shorcut, shortcutsFromSettings
 from shortcut_manager_dialog import ShortcutManagerDialog 
 from shortcut_action import ShorcutAction
@@ -54,11 +57,6 @@ class ShortcutManager:
         self._shortcuts.append(shortcut)
         self._actions.append(ShorcutAction(self._iface, shortcut))
         self.dialog.addShortcut(ShortcutWidget(None,shortcut))
-        #pass
-        
-    #def __del__(self):
-    #    for action in self.actions:
-    #        self._iface.removeToolBarIcon(action)
     
     #TODO bad decision
     def unload(self): 
@@ -157,7 +155,7 @@ class ShortcutManagerPlugin:
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
         
-        shortcutManageIcon = QIcon(":/ShortcutManager/icons/icon.png" )
+        shortcutManageIcon = QIcon(":/ShortcutManager/icon.png" )
         shortcutManageText = "Shortcut manager"
         self.add_action(
             shortcutManageIcon,

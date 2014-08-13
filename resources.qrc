@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="ShortcutManager" >
-        <file>icons/icon.png</file>
+        <file>icon.png</file>
         <file>icons/default-shortcut-web.png</file>
         <file>icons/default-shortcut-desk.png</file>
         <file>icons/default-shortcut.png</file>

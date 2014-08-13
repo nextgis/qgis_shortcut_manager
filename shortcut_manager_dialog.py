@@ -20,6 +20,7 @@
  *                                                                         *
  ***************************************************************************/
 """
+
 from shortcut_creator import ShortcutCreator
 from shortcut_manager_dialog_ui_base import Ui_ShortcutManagerDialog
 

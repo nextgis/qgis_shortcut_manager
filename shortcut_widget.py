@@ -1,4 +1,26 @@
 # -*- coding: utf-8 -*-
+"""
+/***************************************************************************
+ ShortcutManagerDialog
+                                 A QGIS plugin
+ This plugin create shortcuts in toolbar
+                             -------------------
+        begin                : 2014-07-18
+        git sha              : $Format:%H$
+        copyright            : (C) 2014 by NextGIS
+        email                : info@nextgis.ru
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+"""
+
 from shortcut_utils import getShortcutIcon
 from shortcut_settings import ShortcutSettings
 from shortcut_widget_ui_base import Ui_ShortcutWidget
@@ -12,33 +34,7 @@ class ShortcutWidget(QWidget, Ui_ShortcutWidget):
         self.setupUi(self)
         
         self._shortcut = shortcut
-        """
-        self.verticalLayout = QVBoxLayout(self)
-        self.horizontalLayout = QHBoxLayout(self)
-        self.verticalLayout.addLayout(self.horizontalLayout)
-        spFixed = QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed)
-        
-        # deleteButton
-        self.deleteButton = QPushButton(self)
-        self.deleteButton.setText("Delete")
-        self.deleteButton.setSizePolicy(spFixed)
-        self.horizontalLayout.addWidget(self.deleteButton)
-        # editButton
-        self.editButton = QPushButton(self)
-        self.editButton.setText("Edit")
-        self.editButton.setSizePolicy(spFixed)
-        self.horizontalLayout.addWidget(self.editButton)
-        
-        # shortcutIcon
-        self.shortcutIcon = QLabel(self)
-        self.shortcutIcon.setSizePolicy(spFixed)
-        self.shortcutIcon.setStyleSheet("margin-left:25px")
-        self.horizontalLayout.addWidget(self.shortcutIcon)
-        
-        # shortcutName
-        self.shortcutName = QLabel(self)
-        self.horizontalLayout.addWidget(self.shortcutName)
-        """
+
         self.__shortcutUpdated()
         
         QObject.connect(self.editButton, SIGNAL("clicked()"), self.editShortcut)

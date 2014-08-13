@@ -1,3 +1,26 @@
+# -*- coding: utf-8 -*-
+"""
+/***************************************************************************
+ ShortcutManagerDialog
+                                 A QGIS plugin
+ This plugin create shortcuts in toolbar
+                             -------------------
+        begin                : 2014-07-18
+        git sha              : $Format:%H$
+        copyright            : (C) 2014 by NextGIS
+        email                : info@nextgis.ru
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+"""
+
 from shortcut_creator_ui_base import Ui_CreateShortcutWizard
 from shortcut_utils import getIconByURL, getDefaultIcon
 from __init__ import default_icons_dir
