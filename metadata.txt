@@ -9,10 +9,12 @@
 [general]
 name=Shortcut Manager
 qgisMinimumVersion=2.0
-description=This plugin create shortcuts in toolbar
-version=1.0.4
+description=This plugin create shortcuts in toolbar.
+version=1.0.6
 author=NextGIS
 email=info@nextgis.ru
+
+icon = icons/icon.png 
 
 # End of mandatory metadata
 
@@ -24,10 +26,11 @@ email=info@nextgis.ru
 # Tags are comma separated with spaces allowed
 tags=
 
-homepage=
-tracker=
-repository=
-icon=icon.png
+homepage=https://github.com/nextgis/shortcut-manager
+tracker=https://github.com/nextgis/shortcut-manager/issues
+repository=https://github.com/nextgis/shortcut-manager
+icon=icons/icon.png
+
 # experimental flag
 experimental=True
 

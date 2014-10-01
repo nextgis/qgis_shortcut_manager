@@ -21,7 +21,7 @@
  ***************************************************************************/
 """
 
-import os
+import os, sys
 
 from PyQt4.QtGui import QIcon, QPixmap, QImage
 
@@ -63,22 +63,25 @@ def getIconByURL(shortcutType, uri):
         return _getWebFavIcon(uri)
     
 def _getAppIcon(app):
-    import win32ui
-    import win32gui
-    
-    try:
-        large, small = win32gui.ExtractIconEx(app, 0)
-        win32gui.DestroyIcon(small[0])
-                    
-        hdc = win32ui.CreateDCFromHandle(win32gui.GetDC(0))
-        hbmp = win32ui.CreateBitmap()
-        hbmp.CreateCompatibleBitmap(hdc, 32, 32)
-        hdc = hdc.CreateCompatibleDC()
-        hdc.SelectObject(hbmp)
-        hdc.DrawIcon((0, 0), large[0])
-        hdc.DeleteDC()
-        return QIcon(QPixmap.fromWinHBITMAP(hbmp.GetHandle(), 2))
-    except:
+    if sys.platform == "win32":
+        import win32ui
+        import win32gui
+        
+        try:
+            large, small = win32gui.ExtractIconEx(app, 0)
+            win32gui.DestroyIcon(small[0])
+                        
+            hdc = win32ui.CreateDCFromHandle(win32gui.GetDC(0))
+            hbmp = win32ui.CreateBitmap()
+            hbmp.CreateCompatibleBitmap(hdc, 32, 32)
+            hdc = hdc.CreateCompatibleDC()
+            hdc.SelectObject(hbmp)
+            hdc.DrawIcon((0, 0), large[0])
+            hdc.DeleteDC()
+            return QIcon(QPixmap.fromWinHBITMAP(hbmp.GetHandle(), 2))
+        except:
+            return None
+    else:
         return None
     
 def _getWebFavIcon(url):

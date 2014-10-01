@@ -24,7 +24,7 @@
 from shortcut_creator import ShortcutCreator
 from shortcut_manager_dialog_ui_base import Ui_ShortcutManagerDialog
 
-from PyQt4.QtGui import QDialog
+from PyQt4.QtGui import QDialog, QIcon
 from PyQt4.QtCore import QObject, SIGNAL
 
 class ShortcutManagerDialog(QDialog, Ui_ShortcutManagerDialog):
@@ -34,7 +34,7 @@ class ShortcutManagerDialog(QDialog, Ui_ShortcutManagerDialog):
         QDialog.__init__(self)
         
         self.setupUi(self)
-
+        self.setWindowIcon(QIcon(":/ShortcutManager/icons/icon.png" ))
         QObject.connect(self.pushButton, SIGNAL("clicked()"), self.createShortcut)
         
         #self._createShortcutFunction = createShortcutFunction

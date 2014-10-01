@@ -155,7 +155,7 @@ class ShortcutManagerPlugin:
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
         
-        shortcutManageIcon = QIcon(":/ShortcutManager/icon.png" )
+        shortcutManageIcon = QIcon(":/ShortcutManager/icons/icon.png" )
         shortcutManageText = "Shortcut manager"
         self.add_action(
             shortcutManageIcon,
