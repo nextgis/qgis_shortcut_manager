@@ -90,7 +90,7 @@
     <message>
         <location filename="shortcut_settings_ui_base.py" line="125"/>
         <source>Shortcut settings</source>
-        <translation>Настройик ярлыка</translation>
+        <translation>Настройки ярлыка</translation>
     </message>
     <message>
         <location filename="shortcut_settings_ui_base.py" line="126"/>
