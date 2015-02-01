@@ -9,8 +9,8 @@
 [general]
 name=Shortcut Manager
 qgisMinimumVersion=2.0
-description=This plugin create shortcuts in toolbar.
-version=1.0.6
+description=This plugin create shortcuts in toolbar to run external programs and open web-pages.
+version=1.0.7
 author=NextGIS
 email=info@nextgis.ru
 
@@ -21,9 +21,10 @@ icon = icons/icon.png
 # Optional items:
 
 # Uncomment the following line and add your changelog:
-# changelog=
+changelog=1.0.7:
+    * Fix #4 Cyrillic symbols in the path to the executable file
+    * Add ability to set the default icons in shortcut settings dialog
 
-# Tags are comma separated with spaces allowed
 tags=
 
 homepage=https://github.com/nextgis/shortcut-manager

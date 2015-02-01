@@ -21,6 +21,7 @@
  ***************************************************************************/
 """
 
+import sys
 import subprocess
 import webbrowser
 import functools
@@ -55,6 +56,7 @@ class ShorcutAction(QAction):
         shortcutType = getShortcutType(self._shortcut.uri)
 
         if shortcutType == "desktop":
+            #self._callbackFunction = functools.partial(self._runApplication, self._shortcut.uri, self._shortcut.directory)
             self._callbackFunction = functools.partial(self._runApplication, self._shortcut.uri)
         elif shortcutType == "web":
             self._callbackFunction = functools.partial(self._runBrowser, self._shortcut.uri)
@@ -64,7 +66,6 @@ class ShorcutAction(QAction):
                                             'Unknown shortcut type',
                                             'Unknown shortcut type',
                                             QMessageBox.Ok)
-    
     def _triggeredFunction(self):
         self._callbackFunction()
     
@@ -76,4 +77,4 @@ class ShorcutAction(QAction):
         webbrowser.open(url)
         
     def _runApplication(self, app):
-        subprocess.Popen([app])
+        subprocess.Popen([app.encode(sys.getfilesystemencoding())])

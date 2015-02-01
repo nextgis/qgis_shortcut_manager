@@ -38,6 +38,7 @@ class ShortcutSettings(QDialog, Ui_ShortcutSettings):
         self._shortcut = shortcut
         
         self._shortcutName_le.setText(self._shortcut.name)
+        
         if self._shortcut.uri is not None:
             self._shortcutURI_le.setText(self._shortcut.uri)
         
@@ -48,6 +49,7 @@ class ShortcutSettings(QDialog, Ui_ShortcutSettings):
         
         self._shortcutNewIcon = self._shortcut.icon
         QObject.connect(self._changeIconBtn, SIGNAL("clicked()"), self._chooseIcon)
+        QObject.connect(self.pbSetDefaultIcon, SIGNAL("clicked()"), self._setDefaultIcon)
     
     def _chooseIcon(self):
         fileName = QFileDialog.getOpenFileName(self,
@@ -58,6 +60,13 @@ class ShortcutSettings(QDialog, Ui_ShortcutSettings):
             self._shortcutNewIcon = os.path.normpath(unicode(fileName))
             self._shortcutIcon_l.setPixmap( QIcon(self._shortcutNewIcon).pixmap(QSize(32,32)) )
     
+    def _setDefaultIcon(self):
+            self._shortcutNewIcon = None
+            shortcutIcon = getShortcutIcon(
+               self._shortcutNewIcon,
+               self._shortcut.uri)
+            self._shortcutIcon_l.setPixmap(shortcutIcon.pixmap(QSize(32,32)))
+            
     def _validatePage(self):
         isValid = True
         

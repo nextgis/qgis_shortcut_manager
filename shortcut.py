@@ -49,17 +49,19 @@ class Shorcut(QObject):
         if self._name in self.settings.childGroups():
             self._uri = self.settings.value("%s/uri"%self._name)
             self._icon = self.settings.value("%s/icon"%self._name)
+            #self._directory = self.settings.value("%s/_directory"%self._name)
         else:
             self._uri = uri
             self._icon = icon
-            self.settings.setValue("%s/uri"%self._name,self._uri)
-            self.settings.setValue("%s/icon"%self._name,self._icon)
-        
+            self.settings.setValue("%s/uri"%self._name, self._uri)
+            self.settings.setValue("%s/icon"%self._name, self._icon)
+            #self.settings.setValue("%s/directory"%self._name, self._directory)
     
     def delete(self):
         self.settings.remove(self._name)
         self.deleted.emit()
     
+    #def editShortcut(self, name, uri, icon, directory):
     def editShortcut(self, name, uri, icon):
         if self._name != name:
             self.settings.remove(self._name)
@@ -75,6 +77,10 @@ class Shorcut(QObject):
         if self._icon != icon:
             self._icon = icon
             self.settings.setValue("%s/icon"%self._name,self._icon)
+        
+        #if self._directory != directory:
+        #    self._directory = directory
+        #    self.settings.setValue("%s/directory"%self._name,self._directory)
             
         self.updated.emit()
     
@@ -89,3 +95,7 @@ class Shorcut(QObject):
     @property
     def icon(self):
         return self._icon
+    
+    #@property
+    #def directory(self):
+    #    return self._directory
