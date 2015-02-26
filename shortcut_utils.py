@@ -23,6 +23,8 @@
 
 import os, sys
 
+from PyQt4 import QtGui
+from PyQt4 import QtCore
 from PyQt4.QtGui import QIcon, QPixmap, QImage
 
 from __init__ import default_icons_dir
@@ -64,23 +66,18 @@ def getIconByURL(shortcutType, uri):
     
 def _getAppIcon(app):
     if sys.platform == "win32":
-        import win32ui
-        import win32gui
-        
-        try:
-            large, small = win32gui.ExtractIconEx(app, 0)
-            win32gui.DestroyIcon(small[0])
-                        
-            hdc = win32ui.CreateDCFromHandle(win32gui.GetDC(0))
-            hbmp = win32ui.CreateBitmap()
-            hbmp.CreateCompatibleBitmap(hdc, 32, 32)
-            hdc = hdc.CreateCompatibleDC()
-            hdc.SelectObject(hbmp)
-            hdc.DrawIcon((0, 0), large[0])
-            hdc.DeleteDC()
-            return QIcon(QPixmap.fromWinHBITMAP(hbmp.GetHandle(), 2))
-        except:
-            return None
+        full_path_app = app
+        if not os.path.exists(app):
+            path_env_dirs = os.getenv("PATH").split(';')
+            for dir in path_env_dirs:
+                full_path_app = os.path.join(dir, app)
+                if os.path.exists(full_path_app):
+                    break
+            else:
+                return None
+        fileInfo = QtCore.QFileInfo(full_path_app)
+        fileIconProvicer = QtGui.QFileIconProvider()
+        return fileIconProvicer.icon(fileInfo)
     else:
         return None
     

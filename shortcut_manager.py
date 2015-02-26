@@ -21,6 +21,8 @@
  ***************************************************************************/
 """
 
+import os
+import weakref
 import resources_rc
 
 from shortcut import Shorcut, shortcutsFromSettings
@@ -31,12 +33,15 @@ from shortcut_widget import ShortcutWidget
 from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt4.QtGui import QAction, QIcon
 
-import os
-import weakref
+from qgis.core import QgsMessageLog
 
 class ShortcutManager:
     def __init__(self, iface):
         self._iface = iface
+        
+        QgsMessageLog.logMessage(
+            "Shortcuts manager. Load shortcuts from settings.", 
+            None, QgsMessageLog.INFO)
         
         self._shortcuts = shortcutsFromSettings()
         

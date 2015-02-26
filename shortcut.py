@@ -20,8 +20,11 @@
  *                                                                         *
  ***************************************************************************/
 """
+import os
 
 from PyQt4.QtCore import QObject, QSettings, pyqtSignal
+
+from qgis.core import QgsMessageLog
 
 def shortcutsFromSettings():
     shortcuts = []
@@ -50,12 +53,19 @@ class Shorcut(QObject):
             self._uri = self.settings.value("%s/uri"%self._name)
             self._icon = self.settings.value("%s/icon"%self._name)
             #self._directory = self.settings.value("%s/_directory"%self._name)
+            
+            QgsMessageLog.logMessage(
+                "Shortcuts manager. Load shortcut with name: %s"% self._name,
+                None, QgsMessageLog.INFO)
         else:
             self._uri = uri
             self._icon = icon
             self.settings.setValue("%s/uri"%self._name, self._uri)
             self.settings.setValue("%s/icon"%self._name, self._icon)
             #self.settings.setValue("%s/directory"%self._name, self._directory)
+            QgsMessageLog.logMessage(
+                "Shortcuts manager. Create shortcut with name: %s"% self._name,
+                None, QgsMessageLog.INFO)
     
     def delete(self):
         self.settings.remove(self._name)
@@ -78,6 +88,9 @@ class Shorcut(QObject):
             self._icon = icon
             self.settings.setValue("%s/icon"%self._name,self._icon)
         
+        QgsMessageLog.logMessage(
+                "Shortcuts manager. Edit shortcut with name: %s"% self._name,
+                None, QgsMessageLog.INFO)
         #if self._directory != directory:
         #    self._directory = directory
         #    self.settings.setValue("%s/directory"%self._name,self._directory)

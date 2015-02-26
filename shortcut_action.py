@@ -20,7 +20,7 @@
  *                                                                         *
  ***************************************************************************/
 """
-
+import os
 import sys
 import subprocess
 import webbrowser
@@ -30,6 +30,8 @@ from PyQt4.QtGui import QAction, QMessageBox
 from PyQt4.QtCore import QObject, SIGNAL
 
 from shortcut_utils import getShortcutIcon, getShortcutType
+
+from qgis.core import QgsMessageLog
 
 class ShorcutAction(QAction):
     def __init__(self, iface, shortcut):
@@ -74,7 +76,31 @@ class ShorcutAction(QAction):
         self._iface.removeToolBarIcon(self)
     
     def _runBrowser(self, url):
-        webbrowser.open(url)
+        try:
+            webbrowser.open(url)
+        except webbrowser.Error as err:
+            QgsMessageLog.logMessage(
+                "Shortcuts manager. Error when open shortcut with http url: %s"%url + "\n" + str(err),
+                None, QgsMessageLog.CRITICAL)
         
     def _runApplication(self, app):
-        subprocess.Popen([app.encode(sys.getfilesystemencoding())])
+        try:
+            app = app.encode(sys.getfilesystemencoding())
+            if sys.platform.startswith('darwin'):
+                if os.path.exists(app) == False or os.access(app, os.X_OK):
+                    subprocess.call([app])
+                else:
+                    subprocess.call(['open', app])
+            elif os.name == 'nt':
+                os.startfile(app)
+            elif os.name == 'posix':
+                if os.path.exists(app) == False or os.access(app, os.X_OK):
+                    subprocess.Popen([app])
+                else:
+                    subprocess.Popen(['xdg-open', app])
+            
+        except Exception as err:
+            QgsMessageLog.logMessage(
+                "Shortcuts manager. Error when open shortcut for app: %s"%app + "\n" + str(err),
+                None, QgsMessageLog.CRITICAL)
+            raise err

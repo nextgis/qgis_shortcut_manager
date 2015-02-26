@@ -41,9 +41,11 @@ def find_favicon_from_url(url):
     """
 
     try:
-        dump = urllib2.urlopen(url).read()
+        resp = urllib2.urlopen(url, None, 1)
+        dump = resp.read()
     except Exception, ex:
-        logging.error(ex.message)
+        #logging.error(ex.message)
+        return None
     else:
         icon_url = find_favicon_from_dump(dump, url)
         if icon_url:
@@ -52,7 +54,7 @@ def find_favicon_from_url(url):
     host = urlsplit(url).hostname
     icon_url = 'http://%s/favicon.ico' % host
     try:
-        req = urllib2.urlopen(icon_url)
+        req = urllib2.urlopen(icon_url, None, 1)
     except Exception, ex:
         logging.error(ex.message)
     else:
