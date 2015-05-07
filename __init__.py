@@ -25,8 +25,9 @@
 pylupdate4 __init__.py shortcut.py shortcut_action.py shortcut_creator.py shortcut_manager.py shortcut_manager_dialog.py shortcut_settings.py shortcut_utils.py shortcut_widget.py shortcut_creator_ui_base.py shortcut_settings_ui_base.py shortcut_widget_ui_base.py  -ts i18n\ShortcutManager_ru.ts
 """
 import os
+import sys
 
-real_plugin_dir = os.path.dirname(__file__)
+real_plugin_dir = os.path.dirname(__file__).decode(sys.getfilesystemencoding())
 default_icons_dir = os.path.join(real_plugin_dir,"icons4shortcuts")
 
 # noinspection PyPep8Naming

@@ -57,7 +57,7 @@ class ShortcutSettings(QDialog, Ui_ShortcutSettings):
                                                default_icons_dir
                                               )
         if fileName != "":
-            self._shortcutNewIcon = os.path.normpath(unicode(fileName))
+            self._shortcutNewIcon = os.path.normpath( unicode(fileName) )
             self._shortcutIcon_l.setPixmap( QIcon(self._shortcutNewIcon).pixmap(QSize(32,32)) )
     
     def _setDefaultIcon(self):
@@ -81,16 +81,18 @@ class ShortcutSettings(QDialog, Ui_ShortcutSettings):
         return isValid
     
     def accept(self):
-        
+        print "ShortcutSettings accept"
         if self._validatePage() == False:
             return
         
         self.shortcutNewName = self._shortcutName_le.text()
         self.shortcutNewURI = self._shortcutURI_le.text()
         
+        #print "self._shortcutNewIcon: ", self._shortcutNewIcon
+        
         if self._shortcutNewIcon is not None:
             if self._shortcutNewIcon.lower().find(default_icons_dir.lower()) == 0:
-                self._shortcutNewIcon = self._shortcutNewIcon[len(default_icons_dir)+1:]
+                self._shortcutNewIcon = self._shortcutNewIcon[ len(default_icons_dir)+1: ]
         
         self._shortcut.editShortcut(self.shortcutNewName, self.shortcutNewURI, self._shortcutNewIcon)
         

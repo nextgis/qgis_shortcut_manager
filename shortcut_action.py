@@ -26,8 +26,8 @@ import subprocess
 import webbrowser
 import functools
 
-from PyQt4.QtGui import QAction, QMessageBox
-from PyQt4.QtCore import QObject, SIGNAL
+from PyQt4.QtGui import QAction, QMessageBox, QDesktopServices
+from PyQt4.QtCore import QObject, SIGNAL, QFileInfo, QUrl
 
 from shortcut_utils import getShortcutIcon, getShortcutType
 
@@ -55,8 +55,8 @@ class ShorcutAction(QAction):
         self.setIcon(getShortcutIcon(self._shortcut.icon, self._shortcut.uri))
         self.setText(self._shortcut.name)
         
+        '''
         shortcutType = getShortcutType(self._shortcut.uri)
-
         if shortcutType == "desktop":
             #self._callbackFunction = functools.partial(self._runApplication, self._shortcut.uri, self._shortcut.directory)
             self._callbackFunction = functools.partial(self._runApplication, self._shortcut.uri)
@@ -68,13 +68,16 @@ class ShorcutAction(QAction):
                                             'Unknown shortcut type',
                                             'Unknown shortcut type',
                                             QMessageBox.Ok)
+        '''
+        self._callbackFunction = functools.partial(self._runApplication, self._shortcut.uri)
+        
     def _triggeredFunction(self):
         self._callbackFunction()
     
     def __shortcutDeleted(self):
         self.setParent(None)
         self._iface.removeToolBarIcon(self)
-    
+    '''
     def _runBrowser(self, url):
         try:
             webbrowser.open(url)
@@ -82,10 +85,22 @@ class ShorcutAction(QAction):
             QgsMessageLog.logMessage(
                 "Shortcuts manager. Error when open shortcut with http url: %s"%url + "\n" + str(err),
                 None, QgsMessageLog.CRITICAL)
+    '''
         
     def _runApplication(self, app):
         try:
             app = app.encode(sys.getfilesystemencoding())
+            
+            '''            
+            if QUrl(app).host() != u'':
+                QDesktopServices.openUrl(QUrl(app))
+            else:
+                if QFileInfo(app).exists() == True:
+                    QDesktopServices.openUrl( QUrl('file:///%s'%app) )
+                else:
+                    QDesktopServices.openUrl( QUrl(app) )
+            
+            '''
             if sys.platform.startswith('darwin'):
                 if os.path.exists(app) == False or os.access(app, os.X_OK):
                     subprocess.call([app])
