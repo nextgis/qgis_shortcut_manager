@@ -21,30 +21,31 @@
  ***************************************************************************/
 """
 
-from shortcut_creator import ShortcutCreator
-from shortcut_manager_dialog_ui_base import Ui_ShortcutManagerDialog
+from .shortcut_creator import ShortcutCreator
+from .shortcut_manager_dialog_ui_base import Ui_ShortcutManagerDialog
 
-from PyQt4.QtGui import QDialog, QIcon
-from PyQt4.QtCore import QObject, SIGNAL
+from qgis.PyQt.QtGui import QIcon
+from qgis.PyQt.QtWidgets import QDialog
+
 
 class ShortcutManagerDialog(QDialog, Ui_ShortcutManagerDialog):
-    #def __init__(self, parent, createShortcutFunction):
+    # def __init__(self, parent, createShortcutFunction):
     def __init__(self, parent, manager):
         """Constructor."""
         QDialog.__init__(self)
-        
+
         self.setupUi(self)
-        self.setWindowIcon(QIcon(":/ShortcutManager/icons/icon.png" ))
-        QObject.connect(self.pushButton, SIGNAL("clicked()"), self.createShortcut)
-        
-        #self._createShortcutFunction = createShortcutFunction
+        self.setWindowIcon(QIcon(":/ShortcutManager/icons/icon.png"))
+        self.pushButton.clicked.connect(self.createShortcut)
+
+        # self._createShortcutFunction = createShortcutFunction
         self._manager = manager
-    
+
     def addShortcut(self, shortcutWidget):
         self.shorcutWidgetsContainer.addWidget(shortcutWidget)
-    
+
     def createShortcut(self):
-        #dlg = ShortcutCreator(self, self._createShortcutFunction)
+        # dlg = ShortcutCreator(self, self._createShortcutFunction)
         dlg = ShortcutCreator(self, self._manager.createShortcut)
         dlg.show()
         # Run the dialog event loop

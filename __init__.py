@@ -27,8 +27,9 @@ pylupdate4 __init__.py shortcut.py shortcut_action.py shortcut_creator.py shortc
 import os
 import sys
 
-real_plugin_dir = os.path.dirname(__file__).decode(sys.getfilesystemencoding())
-default_icons_dir = os.path.join(real_plugin_dir,"icons4shortcuts")
+real_plugin_dir = os.path.dirname(__file__)
+default_icons_dir = os.path.join(real_plugin_dir, "icons4shortcuts")
+
 
 # noinspection PyPep8Naming
 def classFactory(iface):  # pylint: disable=invalid-name

@@ -21,20 +21,22 @@
  ***************************************************************************/
 """
 
-import os, sys
+import os
+import sys
 
-from PyQt4 import QtGui
-from PyQt4 import QtCore
-from PyQt4.QtGui import QIcon, QPixmap, QImage
+from qgis.PyQt import QtCore
+from qgis.PyQt.QtGui import QIcon, QPixmap, QImage
+from qgis.PyQt.QtWidgets import QFileIconProvider
 
-from __init__ import default_icons_dir
+from .__init__ import default_icons_dir
 
-def getShortcutIcon(iconPath = None, uri = None):
+
+def getShortcutIcon(iconPath=None, uri=None):
     if iconPath is not None:
         if os.path.exists(iconPath):
             return QIcon(iconPath)
-        elif os.path.exists( os.path.join(default_icons_dir,iconPath) ):
-            return QIcon( os.path.join(default_icons_dir,iconPath) )
+        elif os.path.exists(os.path.join(default_icons_dir, iconPath)):
+            return QIcon(os.path.join(default_icons_dir, iconPath))
 
     elif uri is not None:
         shortcutIcon = getIconByURL(getShortcutType(uri), uri)
@@ -45,25 +47,28 @@ def getShortcutIcon(iconPath = None, uri = None):
 
     return getDefaultIcon(getShortcutType(None))
 
+
 def getDefaultIcon(shortcutType):
     if shortcutType == "desktop":
-        #icon_path = os.path.join(defaultIconPath, "default-shortcut-desk.png")
+        # icon_path = os.path.join(defaultIconPath, "default-shortcut-desk.png")
         icon_path = ":/ShortcutManager/icons/default-shortcut-desk.png"
     elif shortcutType == "web":
-        #icon_path = os.path.join(defaultIconPath, "default-shortcut-web.png")
+        # icon_path = os.path.join(defaultIconPath, "default-shortcut-web.png")
         icon_path = ":/ShortcutManager/icons/default-shortcut-web.png"
     else:
-        #icon_path = os.path.join(defaultIconPath, "default-shortcut.png")
+        # icon_path = os.path.join(defaultIconPath, "default-shortcut.png")
         icon_path = ":/ShortcutManager/icons/default-shortcut.png"
-    
-    return  QIcon(icon_path)
+
+    return QIcon(icon_path)
+
 
 def getIconByURL(shortcutType, uri):
     if shortcutType == "desktop":
         return _getAppIcon(uri)
     elif shortcutType == "web":
         return _getWebFavIcon(uri)
-    
+
+
 def _getAppIcon(app):
     if sys.platform == "win32":
         full_path_app = app
@@ -76,27 +81,29 @@ def _getAppIcon(app):
             else:
                 return None
         fileInfo = QtCore.QFileInfo(full_path_app)
-        fileIconProvicer = QtGui.QFileIconProvider()
+        fileIconProvicer = QFileIconProvider()
         return fileIconProvicer.icon(fileInfo)
     else:
         return None
-    
+
+
 def _getWebFavIcon(url):
-    from favicon import find_favicon_from_url
+    from .favicon import find_favicon_from_url
     import requests
-    
+
     shortcutURL = find_favicon_from_url(url)
-    
+
     if shortcutURL is not None:
         r = requests.get(shortcutURL)
         return QIcon(QPixmap.fromImage(QImage.fromData(r.content)))
     else:
         return None
 
+
 def getShortcutType(uri):
     if uri is None:
         return "unknown"
-    
+
     if uri[0:7] == "http://":
         shortcutType = "web"
     else:
