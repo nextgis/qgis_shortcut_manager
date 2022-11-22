@@ -5,9 +5,9 @@ That module provides two function for extracting favicons:
 
 Technical details about favicon: http://en.wikipedia.org/wiki/Favicon
 """
-import urllib2
+from urllib.request import urlopen
 import re
-from urlparse import urljoin, urlsplit
+from urllib.parse import urljoin, urlsplit
 import logging
 import socket
 
@@ -18,6 +18,7 @@ RE_ICON_REL = re.compile(r'rel*=\s*["\']?\s*(?:shortcut\s+)?icon[ "\'>]', re.I |
 RE_HREF = re.compile(r'href\s*=\s*["\']?([^"\' >]+)', re.I | re.S)
 SOCKET_TIMEOUT = 30
 
+
 def setup_socket_timeout(func):
     def decorated(*args, **kwargs):
         oldtimeout = socket.getdefaulttimeout()
@@ -26,6 +27,7 @@ def setup_socket_timeout(func):
             return func(*args, **kwargs)
         finally:
             socket.setdefaulttimeout(oldtimeout)
+
     return decorated
 
 
@@ -41,10 +43,10 @@ def find_favicon_from_url(url):
     """
 
     try:
-        resp = urllib2.urlopen(url, None, 1)
+        resp = urlopen(url, None, 1)
         dump = resp.read()
-    except Exception, ex:
-        #logging.error(ex.message)
+    except Exception as ex:
+        # logging.error(ex)
         return None
     else:
         icon_url = find_favicon_from_dump(dump, url)
@@ -54,9 +56,9 @@ def find_favicon_from_url(url):
     host = urlsplit(url).hostname
     icon_url = 'http://%s/favicon.ico' % host
     try:
-        req = urllib2.urlopen(icon_url, None, 1)
-    except Exception, ex:
-        logging.error(ex.message)
+        req = urlopen(icon_url, None, 1)
+    except Exception as ex:
+        logging.error(ex)
     else:
         if req.code == 200:
             ctype = req.headers.get('content-type', '')
@@ -66,7 +68,6 @@ def find_favicon_from_url(url):
     return None
 
 
-
 def find_icon_element(dump):
     """
     Find <link> element with proper rel attribute and existing href attribute.
@@ -74,8 +75,7 @@ def find_icon_element(dump):
     Returns:
         HTML code of <link> element or None if it was not found
     """
-
-    for link in RE_LINK.findall(dump):
+    for link in RE_LINK.findall(str(dump)):
         match = RE_ICON_REL.search(link)
         if match:
             match = RE_HREF.search(link)
@@ -106,9 +106,9 @@ if __name__ == '__main__':
     assert find_icon_element('<link rel=icon href="foo">')
     assert find_icon_element('<link rel="shortcut icon" href="foo">')
     assert find_icon_element('<link rel="shortcut icon " href="foo">')
-    
+
     assert find_favicon_from_dump('<link rel="icon" href="foo">') == 'foo'
     assert find_favicon_from_dump('<link rel="icon" href="foo">', 'http://ya.ru') == 'http://ya.ru/foo'
     assert find_favicon_from_dump('<link rel="icon" href="/foo">', 'http://ya.ru/bar') == 'http://ya.ru/foo'
-    #print find_favicon_from_url('http://ya.ru')
-    #print find_favicon_from_url('http://bitbucket.org')
+    # print find_favicon_from_url('http://ya.ru')
+    # print find_favicon_from_url('http://bitbucket.org')

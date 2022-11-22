@@ -1,43 +1,45 @@
-# This file contains metadata for your plugin. Since 
-# version 2.0 of QGIS this is the proper way to supply 
-# information about a plugin. The old method of 
-# embedding metadata in __init__.py will 
+# This file contains metadata for your plugin. Since
+# version 2.0 of QGIS this is the proper way to supply
+# information about a plugin. The old method of
+# embedding metadata in __init__.py will
 # is no longer supported since version 2.0.
 
 # This file should be included when you package your plugin.# Mandatory items:
 
 [general]
 name=Shortcut Manager
-qgisMinimumVersion=2.0
 description=This plugin create shortcuts in toolbar to run external programs and open web-pages.
-version=1.0.9
+version=1.1.0
+qgisMinimumVersion=3.0
+
+icon = icons/icon.png
+
 author=NextGIS
 email=info@nextgis.ru
-
-icon = icons/icon.png 
 
 # End of mandatory metadata
 
 # Optional items:
-
 # Uncomment the following line and add your changelog:
-changelog=1.0.9:
-    * Fix problem with cyrillic in windows user name.
+changelog=
+    1.1.0:
+        * QGIS 3 port
+    1.0.9:
+        * Fix problem with cyrillic in windows user name.
     1.0.8:
-    * Fix #6 Open a file with the default application
+        * Fix #6 Open a file with the default application
     1.0.7:
-    * Fix #4 Cyrillic symbols in the path to the executable file
-    * Add ability to set the default icons in shortcut settings dialog
+        * Fix #4 Cyrillic symbols in the path to the executable file
+        * Add ability to set the default icons in shortcut settings dialog
 
-tags=
+tags=shortcuts
 
 homepage=https://github.com/nextgis/shortcut-manager
 tracker=https://github.com/nextgis/shortcut-manager/issues
 repository=https://github.com/nextgis/shortcut-manager
-icon=icons/icon.png
 
 # experimental flag
-experimental=True
+experimental=False
 
 # deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False

@@ -21,26 +21,27 @@
  ***************************************************************************/
 """
 
-from shortcut_utils import getShortcutIcon
-from shortcut_settings import ShortcutSettings
-from shortcut_widget_ui_base import Ui_ShortcutWidget
+from .shortcut_utils import getShortcutIcon
+from .shortcut_settings import ShortcutSettings
+from .shortcut_widget_ui_base import Ui_ShortcutWidget
 
-from PyQt4.QtGui import QWidget
-from PyQt4.QtCore import QObject, SIGNAL, QSize
+from qgis.PyQt.QtWidgets import QWidget
+from qgis.PyQt.QtCore import QObject, QSize
+
 
 class ShortcutWidget(QWidget, Ui_ShortcutWidget):
     def __init__(self, parent, shortcut):
         QWidget.__init__(self)
         self.setupUi(self)
-        
+
         self._shortcut = shortcut
 
         self.__shortcutUpdated()
-        
-        QObject.connect(self.editButton, SIGNAL("clicked()"), self.editShortcut)
-        QObject.connect(self.deleteButton, SIGNAL("clicked()"), self.deleteShortcut)
-        QObject.connect(self._shortcut, SIGNAL("updated()"), self.__shortcutUpdated)
-        QObject.connect(self._shortcut, SIGNAL("deleted()"), self.__shortcutDeleted)
+
+        self.editButton.clicked.connect(self.editShortcut)
+        self.deleteButton.clicked.connect(self.deleteShortcut)
+        self._shortcut.updated.connect(self.__shortcutUpdated)
+        self._shortcut.deleted.connect(self.__shortcutDeleted)
 
     def editShortcut(self):
         dlg = ShortcutSettings(self, self._shortcut)
@@ -51,19 +52,19 @@ class ShortcutWidget(QWidget, Ui_ShortcutWidget):
         if result:
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
-            #self._loadData(shortcutName)
+            # self._loadData(shortcutName)
             pass
-        
+
     def deleteShortcut(self):
         self._shortcut.delete()
-    
+
     def __shortcutUpdated(self):
         shortcutIcon = getShortcutIcon(
-               self._shortcut.icon,
-               self._shortcut.uri)
-        self.shortcutIcon.setPixmap(shortcutIcon.pixmap(QSize(32,32)))
-        
+            self._shortcut.icon,
+            self._shortcut.uri)
+        self.shortcutIcon.setPixmap(shortcutIcon.pixmap(QSize(32, 32)))
+
         self.shortcutName.setText(self._shortcut.name)
-    
+
     def __shortcutDeleted(self):
         self.setParent(None)
