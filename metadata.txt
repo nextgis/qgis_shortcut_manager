@@ -8,8 +8,8 @@
 
 [general]
 name=Shortcut Manager
-description=This plugin creates shortcuts in toolbar to run external programs and open web-pages.
-about=This plugin creates shortcuts in toolbar to run external programs and open web-pages.
+description=A shortcuts toolbar to run external programs
+about=Create a shortcuts toolbar to run external programs and open web pages. Developed by NextGIS. Any feedback is welcome at https://nextgis.com/contact
 version=1.1.0
 qgisMinimumVersion=3.0
 qgisMaximumVersion=3.99
