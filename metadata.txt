@@ -9,7 +9,9 @@
 [general]
 name=Shortcut Manager
 description=A shortcuts toolbar to run external programs
+description[ru]=Панель ярлыков для запуска внешних программ.
 about=Create a shortcuts toolbar to run external programs and open web pages. Developed by NextGIS. Any feedback is welcome at https://nextgis.com/contact
+about[ru]=Создайте панель ярлыков для запуска внешних программ и открытия веб-страниц. Разработан компанией NextGIS. Любые отзывы приветствуются на https://nextgis.com/contact.
 version=1.1.0
 qgisMinimumVersion=3.0
 qgisMaximumVersion=3.99
@@ -39,6 +41,8 @@ tags=shortcuts
 homepage=https://nextgis.com
 tracker=https://github.com/nextgis/qgis_shortcut_manager/issues
 repository=https://github.com/nextgis/qgis_shortcut_manager/
+video=https://youtu.be/cVYAEHkRkG0
+video[ru]=https://youtu.be/VV0uLWJpaUY
 
 # experimental flag
 experimental=False

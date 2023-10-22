@@ -36,6 +36,7 @@ from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
 
 from qgis.core import QgsMessageLog, Qgis
+from . import about_dialog
 
 
 class ShortcutManager:
@@ -78,7 +79,7 @@ class ShortcutManagerPlugin:
 
     def __init__(self, iface):
         """Constructor.
-        
+
         :param iface: An interface instance that will be passed to this class
             which provides the hook by which you can manipulate the QGIS
             application at run time.
@@ -123,7 +124,7 @@ class ShortcutManagerPlugin:
         :returns: Translated version of message.
         :rtype: QString
         """
-        return QCoreApplication.translate('ShortcutManager', message)
+        return QCoreApplication.translate(__class__.__name__, message)
 
     def add_action(
             self,
@@ -137,7 +138,10 @@ class ShortcutManagerPlugin:
             whats_this=None,
             parent=None):
 
-        action = QAction(icon, text, parent)
+        if icon:
+            action = QAction(icon, text, parent)
+        else:
+            action = QAction(text, parent)
         action.triggered.connect(callback)
         action.setEnabled(enabled_flag)
 
@@ -165,10 +169,17 @@ class ShortcutManagerPlugin:
 
         shortcutManageIcon = QIcon(":/ShortcutManager/icons/icon.png")
         shortcutManageText = "Shortcut manager"
+        shortcutAboutText = self.tr("About")
         self.add_action(
             shortcutManageIcon,
             shortcutManageText,
             callback=self.run,
+            parent=self.iface.mainWindow(),
+            add_to_toolbar=False)
+        self.add_action(
+            None,
+            shortcutAboutText,
+            callback=self.about,
             parent=self.iface.mainWindow(),
             add_to_toolbar=False)
 
@@ -179,6 +190,7 @@ class ShortcutManagerPlugin:
                 self.tr(u'&Shortcut Manager'),
                 action)
             self.iface.removeToolBarIcon(action)
+            action.deleteLater()
 
         self.manager.unload()
         # del self.manager
@@ -197,3 +209,7 @@ class ShortcutManagerPlugin:
             # Do something useful here - delete the line containing pass and
             # substitute with your code.
             pass
+
+    def about(self):
+        dialog = about_dialog.AboutDialog(os.path.basename(self.plugin_dir))
+        dialog.exec_()
