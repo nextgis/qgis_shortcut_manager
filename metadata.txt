@@ -9,9 +9,9 @@
 [general]
 name=Shortcut Manager
 description=A shortcuts toolbar to run external programs
-description[ru]=Панель ярлыков для запуска внешних программ.
+description[ru]=Панель ярлыков для запуска внешних программ
 about=Create a shortcuts toolbar to run external programs and open web pages. Developed by NextGIS. Any feedback is welcome at https://nextgis.com/contact
-about[ru]=Создайте панель ярлыков для запуска внешних программ и открытия веб-страниц. Разработан компанией NextGIS. Любые отзывы приветствуются на https://nextgis.com/contact.
+about[ru]=Создаёт панель ярлыков для запуска внешних программ и открытия веб-страниц. Разработан компанией NextGIS. Любые отзывы приветствуются на https://nextgis.com/contact.
 version=1.1.0
 qgisMinimumVersion=3.0
 qgisMaximumVersion=3.99
@@ -26,6 +26,8 @@ email=info@nextgis.com
 # Optional items:
 # Uncomment the following line and add your changelog:
 changelog=
+    1.x.x
+        * Added about dialog
     1.1.0:
         * QGIS 3 port
     1.0.9:
@@ -49,4 +51,3 @@ experimental=False
 
 # deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
-

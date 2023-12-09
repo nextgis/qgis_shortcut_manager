@@ -8,7 +8,7 @@ from qgis.core import QgsSettings
 from qgis.utils import pluginMetadata
 
 FORM_CLASS, _ = uic.loadUiType(
-    os.path.join(os.path.dirname(__file__), "ui/about_dialog_base.ui")
+    os.path.join(os.path.dirname(__file__), "ui", "about_dialog_base.ui")
 )
 
 
@@ -65,4 +65,6 @@ class AboutDialog(QDialog, FORM_CLASS):
             "{homepage_url}": metadata_value("repository"),
             "{tracker_url}": metadata_value("tracker"),
             "{main_url}": f"https://nextgis.{'ru' if is_ru else 'com'}",
+            "{utm}": "?utm_source=qgis_plugin&utm_medium=about&utm_campaign="
+                     + self.__package_name
         }

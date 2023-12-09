@@ -22,7 +22,6 @@
 """
 
 import os
-import sys
 import weakref
 # import resources_rc
 
@@ -105,7 +104,7 @@ class ShortcutManagerPlugin:
 
         # Declare instance attributes
         self.actions = []
-        self.menu = self.tr(u'&Shortcut Manager')
+        self.menu = self.tr('&Shortcut Manager')
 
         # self.toolbar = self.iface.addToolBar(u'ShortcutManager')
         # self.toolbar.setObjectName(u'ShortcutManager')
@@ -169,26 +168,25 @@ class ShortcutManagerPlugin:
 
         shortcutManageIcon = QIcon(":/ShortcutManager/icons/icon.png")
         shortcutManageText = "Shortcut manager"
-        shortcutAboutText = self.tr("About")
         self.add_action(
             shortcutManageIcon,
             shortcutManageText,
             callback=self.run,
             parent=self.iface.mainWindow(),
             add_to_toolbar=False)
+        shortcutAboutText = self.tr("About plugin…")
         self.add_action(
             None,
             shortcutAboutText,
             callback=self.about,
             parent=self.iface.mainWindow(),
-            add_to_toolbar=False)
+            add_to_toolbar=False
+        )
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
-            self.iface.removePluginMenu(
-                self.tr(u'&Shortcut Manager'),
-                action)
+            self.iface.removePluginMenu(self.menu, action)
             self.iface.removeToolBarIcon(action)
             action.deleteLater()
 
