@@ -47,8 +47,12 @@ class Ui_ShortcutManagerDialog(object):
 
     def retranslateUi(self, ShortcutManagerDialog):
         _translate = QtCore.QCoreApplication.translate
-        ShortcutManagerDialog.setWindowTitle(_translate("ShortcutManagerDialog", "Shortcut manager"))
-        self.pushButton.setText(_translate("ShortcutManagerDialog", "Create shortcut"))
+        ShortcutManagerDialog.setWindowTitle(
+            _translate("ShortcutManagerDialog", "Shortcut manager")
+        )
+        self.pushButton.setText(
+            _translate("ShortcutManagerDialog", "Create shortcut")
+        )
 
 
 if __name__ == "__main__":

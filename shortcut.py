@@ -20,6 +20,7 @@
  *                                                                         *
  ***************************************************************************/
 """
+
 import os
 
 from qgis.PyQt.QtCore import QObject, QSettings, pyqtSignal
@@ -31,7 +32,7 @@ def shortcutsFromSettings():
     shortcuts = []
 
     settings = QSettings()
-    settings.beginGroup('/NextGIS/ShortcutManager/shortcuts')
+    settings.beginGroup("/NextGIS/ShortcutManager/shortcuts")
     shortcuts_names = settings.childGroups()
     for shortcut_name in shortcuts_names:
         shortcuts.append(Shorcut(shortcut_name))
@@ -47,7 +48,7 @@ class Shorcut(QObject):
         super(Shorcut, self).__init__()
 
         self.settings = QSettings()
-        self.settings.beginGroup('/NextGIS/ShortcutManager/shortcuts')
+        self.settings.beginGroup("/NextGIS/ShortcutManager/shortcuts")
 
         self._name = name
 
@@ -58,7 +59,9 @@ class Shorcut(QObject):
 
             QgsMessageLog.logMessage(
                 "Shortcuts manager. Load shortcut with name: %s" % self._name,
-                None, Qgis.Info)
+                None,
+                Qgis.Info,
+            )
         else:
             self._uri = uri
             self._icon = icon
@@ -66,8 +69,11 @@ class Shorcut(QObject):
             self.settings.setValue("%s/icon" % self._name, self._icon)
             # self.settings.setValue("%s/directory"%self._name, self._directory)
             QgsMessageLog.logMessage(
-                "Shortcuts manager. Create shortcut with name: %s" % self._name,
-                None, Qgis.Info)
+                "Shortcuts manager. Create shortcut with name: %s"
+                % self._name,
+                None,
+                Qgis.Info,
+            )
 
     def delete(self):
         self.settings.remove(self._name)
@@ -92,7 +98,9 @@ class Shorcut(QObject):
 
         QgsMessageLog.logMessage(
             "Shortcuts manager. Edit shortcut with name: %s" % self._name,
-            None, Qgis.Info)
+            None,
+            Qgis.Info,
+        )
         # if self._directory != directory:
         #    self._directory = directory
         #    self.settings.setValue("%s/directory"%self._name,self._directory)

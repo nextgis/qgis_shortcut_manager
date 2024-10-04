@@ -59,9 +59,7 @@ class ShortcutWidget(QWidget, Ui_ShortcutWidget):
         self._shortcut.delete()
 
     def __shortcutUpdated(self):
-        shortcutIcon = getShortcutIcon(
-            self._shortcut.icon,
-            self._shortcut.uri)
+        shortcutIcon = getShortcutIcon(self._shortcut.icon, self._shortcut.uri)
         self.shortcutIcon.setPixmap(shortcutIcon.pixmap(QSize(32, 32)))
 
         self.shortcutName.setText(self._shortcut.name)

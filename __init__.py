@@ -20,10 +20,11 @@
  *                                                                         *
  ***************************************************************************/
  This script initializes the plugin, making it known to QGIS.
- 
- 
+
+
 pylupdate4 __init__.py shortcut.py shortcut_action.py shortcut_creator.py shortcut_manager.py shortcut_manager_dialog.py shortcut_settings.py shortcut_utils.py shortcut_widget.py shortcut_creator_ui_base.py shortcut_settings_ui_base.py shortcut_widget_ui_base.py  -ts i18n\ShortcutManager_ru.ts
 """
+
 import os
 import sys
 
@@ -40,4 +41,5 @@ def classFactory(iface):  # pylint: disable=invalid-name
     """
     #
     from .shortcut_manager import ShortcutManagerPlugin
+
     return ShortcutManagerPlugin(iface)

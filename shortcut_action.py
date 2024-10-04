@@ -20,6 +20,7 @@
  *                                                                         *
  ***************************************************************************/
 """
+
 import os
 import sys
 import subprocess
@@ -56,7 +57,7 @@ class ShorcutAction(QAction):
         self.setIcon(getShortcutIcon(self._shortcut.icon, self._shortcut.uri))
         self.setText(self._shortcut.name)
 
-        '''
+        """
         shortcutType = getShortcutType(self._shortcut.uri)
         if shortcutType == "desktop":
             #self._callbackFunction = functools.partial(self._runApplication, self._shortcut.uri, self._shortcut.directory)
@@ -69,8 +70,10 @@ class ShorcutAction(QAction):
                                             'Unknown shortcut type',
                                             'Unknown shortcut type',
                                             QMessageBox.Ok)
-        '''
-        self._callbackFunction = functools.partial(self._runApplication, self._shortcut.uri)
+        """
+        self._callbackFunction = functools.partial(
+            self._runApplication, self._shortcut.uri
+        )
 
     def _triggeredFunction(self):
         self._callbackFunction()
@@ -79,7 +82,7 @@ class ShorcutAction(QAction):
         self.setParent(None)
         self._iface.removeToolBarIcon(self)
 
-    '''
+    """
     def _runBrowser(self, url):
         try:
             webbrowser.open(url)
@@ -87,13 +90,13 @@ class ShorcutAction(QAction):
             QgsMessageLog.logMessage(
                 "Shortcuts manager. Error when open shortcut with http url: %s"%url + "\n" + str(err),
                 None, QgsMessageLog.CRITICAL)
-    '''
+    """
 
     def _runApplication(self, app):
         try:
             app = app.encode(sys.getfilesystemencoding())
 
-            '''            
+            """            
             if QUrl(app).host() != u'':
                 QDesktopServices.openUrl(QUrl(app))
             else:
@@ -102,28 +105,32 @@ class ShorcutAction(QAction):
                 else:
                     QDesktopServices.openUrl( QUrl(app) )
             
-            '''
-            if sys.platform.startswith('darwin'):
+            """
+            if sys.platform.startswith("darwin"):
                 if not os.path.exists(app) or os.access(app, os.X_OK):
                     try:
                         subprocess.call([app])
                     except Exception as e:
-                        subprocess.call(['open', app])
+                        subprocess.call(["open", app])
                 else:
-                    subprocess.call(['open', app])
-            elif os.name == 'nt':
+                    subprocess.call(["open", app])
+            elif os.name == "nt":
                 os.startfile(app)
-            elif os.name == 'posix':
+            elif os.name == "posix":
                 if not os.path.exists(app) or os.access(app, os.X_OK):
                     try:
                         subprocess.Popen([app])
                     except Exception as e:
-                        subprocess.Popen(['xdg-open', app])
+                        subprocess.Popen(["xdg-open", app])
                 else:
-                    subprocess.Popen(['xdg-open', app])
+                    subprocess.Popen(["xdg-open", app])
 
         except Exception as err:
             QgsMessageLog.logMessage(
-                "Shortcuts manager. Error when open shortcut for app: %s" % app + "\n" + str(err),
-                None, Qgis.Critical)
+                "Shortcuts manager. Error when open shortcut for app: %s" % app
+                + "\n"
+                + str(err),
+                None,
+                Qgis.Critical,
+            )
             raise err

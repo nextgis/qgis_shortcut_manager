@@ -73,7 +73,7 @@ def _getAppIcon(app):
     if sys.platform == "win32":
         full_path_app = app
         if not os.path.exists(app):
-            path_env_dirs = os.getenv("PATH").split(';')
+            path_env_dirs = os.getenv("PATH").split(";")
             for dir in path_env_dirs:
                 full_path_app = os.path.join(dir, app)
                 if os.path.exists(full_path_app):

@@ -18,60 +18,90 @@ class Ui_ShortcutSettings(object):
         ShortcutSettings.setObjectName("ShortcutSettings")
         ShortcutSettings.setWindowModality(QtCore.Qt.NonModal)
         ShortcutSettings.resize(511, 127)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(ShortcutSettings.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            ShortcutSettings.sizePolicy().hasHeightForWidth()
+        )
         ShortcutSettings.setSizePolicy(sizePolicy)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/plugins/ShortcutManager/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(
+            QtGui.QPixmap(":/plugins/ShortcutManager/icon.png"),
+            QtGui.QIcon.Normal,
+            QtGui.QIcon.Off,
+        )
         ShortcutSettings.setWindowIcon(icon)
         ShortcutSettings.setModal(True)
         self.verticalLayout = QtWidgets.QVBoxLayout(ShortcutSettings)
-        self.verticalLayout.setSizeConstraint(QtWidgets.QLayout.SetMinAndMaxSize)
+        self.verticalLayout.setSizeConstraint(
+            QtWidgets.QLayout.SetMinAndMaxSize
+        )
         self.verticalLayout.setObjectName("verticalLayout")
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setSizeConstraint(QtWidgets.QLayout.SetMinAndMaxSize)
         self.gridLayout.setContentsMargins(-1, -1, -1, 0)
         self.gridLayout.setObjectName("gridLayout")
         self._shortcutName_le = QtWidgets.QLineEdit(ShortcutSettings)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self._shortcutName_le.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self._shortcutName_le.sizePolicy().hasHeightForWidth()
+        )
         self._shortcutName_le.setSizePolicy(sizePolicy)
         self._shortcutName_le.setText("")
         self._shortcutName_le.setObjectName("_shortcutName_le")
         self.gridLayout.addWidget(self._shortcutName_le, 0, 1, 1, 1)
         self.label_2 = QtWidgets.QLabel(ShortcutSettings)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_2.sizePolicy().hasHeightForWidth()
+        )
         self.label_2.setSizePolicy(sizePolicy)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
         self.label = QtWidgets.QLabel(ShortcutSettings)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label.sizePolicy().hasHeightForWidth()
+        )
         self.label.setSizePolicy(sizePolicy)
         self.label.setObjectName("label")
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self._shortcutURI_le = QtWidgets.QLineEdit(ShortcutSettings)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self._shortcutURI_le.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self._shortcutURI_le.sizePolicy().hasHeightForWidth()
+        )
         self._shortcutURI_le.setSizePolicy(sizePolicy)
         self._shortcutURI_le.setObjectName("_shortcutURI_le")
         self.gridLayout.addWidget(self._shortcutURI_le, 2, 1, 1, 1)
         self.label_3 = QtWidgets.QLabel(ShortcutSettings)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Preferred
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_3.sizePolicy().hasHeightForWidth()
+        )
         self.label_3.setSizePolicy(sizePolicy)
         self.label_3.setObjectName("label_3")
         self.gridLayout.addWidget(self.label_3, 3, 0, 1, 1)
@@ -79,44 +109,71 @@ class Ui_ShortcutSettings(object):
         self.horizontalLayout_5.setContentsMargins(0, -1, -1, -1)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self._shortcutIcon_l = QtWidgets.QLabel(ShortcutSettings)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self._shortcutIcon_l.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self._shortcutIcon_l.sizePolicy().hasHeightForWidth()
+        )
         self._shortcutIcon_l.setSizePolicy(sizePolicy)
         self._shortcutIcon_l.setLineWidth(0)
         self._shortcutIcon_l.setText("")
-        self._shortcutIcon_l.setPixmap(QtGui.QPixmap(":/ShortcutManager/icons/icon.png"))
+        self._shortcutIcon_l.setPixmap(
+            QtGui.QPixmap(":/ShortcutManager/icons/icon.png")
+        )
         self._shortcutIcon_l.setScaledContents(False)
-        self._shortcutIcon_l.setAlignment(QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
+        self._shortcutIcon_l.setAlignment(
+            QtCore.Qt.AlignLeading
+            | QtCore.Qt.AlignLeft
+            | QtCore.Qt.AlignVCenter
+        )
         self._shortcutIcon_l.setIndent(0)
-        self._shortcutIcon_l.setTextInteractionFlags(QtCore.Qt.NoTextInteraction)
+        self._shortcutIcon_l.setTextInteractionFlags(
+            QtCore.Qt.NoTextInteraction
+        )
         self._shortcutIcon_l.setObjectName("_shortcutIcon_l")
         self.horizontalLayout_5.addWidget(self._shortcutIcon_l)
         self._changeIconBtn = QtWidgets.QPushButton(ShortcutSettings)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self._changeIconBtn.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self._changeIconBtn.sizePolicy().hasHeightForWidth()
+        )
         self._changeIconBtn.setSizePolicy(sizePolicy)
         self._changeIconBtn.setObjectName("_changeIconBtn")
         self.horizontalLayout_5.addWidget(self._changeIconBtn)
         self.pbSetDefaultIcon = QtWidgets.QPushButton(ShortcutSettings)
         self.pbSetDefaultIcon.setObjectName("pbSetDefaultIcon")
         self.horizontalLayout_5.addWidget(self.pbSetDefaultIcon)
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(
+            40,
+            20,
+            QtWidgets.QSizePolicy.Expanding,
+            QtWidgets.QSizePolicy.Minimum,
+        )
         self.horizontalLayout_5.addItem(spacerItem)
         self.gridLayout.addLayout(self.horizontalLayout_5, 3, 1, 1, 1)
         self.verticalLayout.addLayout(self.gridLayout)
         self.buttonBox = QtWidgets.QDialogButtonBox(ShortcutSettings)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.buttonBox.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.buttonBox.sizePolicy().hasHeightForWidth()
+        )
         self.buttonBox.setSizePolicy(sizePolicy)
         self.buttonBox.setStyleSheet("")
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setStandardButtons(
+            QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok
+        )
         self.buttonBox.setCenterButtons(False)
         self.buttonBox.setObjectName("buttonBox")
         self.verticalLayout.addWidget(self.buttonBox)
@@ -128,12 +185,18 @@ class Ui_ShortcutSettings(object):
 
     def retranslateUi(self, ShortcutSettings):
         _translate = QtCore.QCoreApplication.translate
-        ShortcutSettings.setWindowTitle(_translate("ShortcutSettings", "Shortcut settings"))
+        ShortcutSettings.setWindowTitle(
+            _translate("ShortcutSettings", "Shortcut settings")
+        )
         self.label_2.setText(_translate("ShortcutSettings", "URI:"))
         self.label.setText(_translate("ShortcutSettings", "Name:"))
         self.label_3.setText(_translate("ShortcutSettings", "Icon:"))
-        self._changeIconBtn.setText(_translate("ShortcutSettings", "Choose icon..."))
-        self.pbSetDefaultIcon.setText(_translate("ShortcutSettings", "Set default"))
+        self._changeIconBtn.setText(
+            _translate("ShortcutSettings", "Choose icon...")
+        )
+        self.pbSetDefaultIcon.setText(
+            _translate("ShortcutSettings", "Set default")
+        )
 
 
 if __name__ == "__main__":

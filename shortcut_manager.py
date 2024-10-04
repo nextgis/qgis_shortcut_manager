@@ -43,8 +43,8 @@ class ShortcutManager:
         self._iface = iface
 
         QgsMessageLog.logMessage(
-            "Shortcuts manager. Load shortcuts from settings.",
-            None, Qgis.Info)
+            "Shortcuts manager. Load shortcuts from settings.", None, Qgis.Info
+        )
 
         self._shortcuts = shortcutsFromSettings()
 
@@ -89,22 +89,21 @@ class ShortcutManagerPlugin:
         # initialize plugin directory
         self.plugin_dir = os.path.dirname(__file__)
         # initialize locale
-        locale = QSettings().value('locale/userLocale')[0:2]
+        locale = QSettings().value("locale/userLocale")[0:2]
         locale_path = os.path.join(
-            self.plugin_dir,
-            'i18n',
-            'ShortcutManager_{}.qm'.format(locale))
+            self.plugin_dir, "i18n", "ShortcutManager_{}.qm".format(locale)
+        )
 
         if os.path.exists(locale_path):
             self.translator = QTranslator()
             self.translator.load(locale_path)
 
-            if qVersion() > '4.3.3':
+            if qVersion() > "4.3.3":
                 QCoreApplication.installTranslator(self.translator)
 
         # Declare instance attributes
         self.actions = []
-        self.menu = self.tr('&Shortcut Manager')
+        self.menu = self.tr("&Shortcut Manager")
 
         # self.toolbar = self.iface.addToolBar(u'ShortcutManager')
         # self.toolbar.setObjectName(u'ShortcutManager')
@@ -126,17 +125,17 @@ class ShortcutManagerPlugin:
         return QCoreApplication.translate(__class__.__name__, message)
 
     def add_action(
-            self,
-            icon,
-            text,
-            callback,
-            enabled_flag=True,
-            add_to_menu=True,
-            add_to_toolbar=True,
-            status_tip=None,
-            whats_this=None,
-            parent=None):
-
+        self,
+        icon,
+        text,
+        callback,
+        enabled_flag=True,
+        add_to_menu=True,
+        add_to_toolbar=True,
+        status_tip=None,
+        whats_this=None,
+        parent=None,
+    ):
         if icon:
             action = QAction(icon, text, parent)
         else:
@@ -155,9 +154,7 @@ class ShortcutManagerPlugin:
             self.iface.addToolBarIcon(action)
 
         if add_to_menu:
-            self.iface.addPluginToMenu(
-                self.menu,
-                action)
+            self.iface.addPluginToMenu(self.menu, action)
 
         self.actions.append(action)
 
@@ -173,14 +170,15 @@ class ShortcutManagerPlugin:
             shortcutManageText,
             callback=self.run,
             parent=self.iface.mainWindow(),
-            add_to_toolbar=False)
+            add_to_toolbar=False,
+        )
         shortcutAboutText = self.tr("About plugin…")
         self.add_action(
             None,
             shortcutAboutText,
             callback=self.about,
             parent=self.iface.mainWindow(),
-            add_to_toolbar=False
+            add_to_toolbar=False,
         )
 
     def unload(self):

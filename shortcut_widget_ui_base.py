@@ -21,37 +21,55 @@ class Ui_ShortcutWidget(object):
         self.horizontalLayout.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.deleteButton = QtWidgets.QPushButton(ShortcutWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.deleteButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.deleteButton.sizePolicy().hasHeightForWidth()
+        )
         self.deleteButton.setSizePolicy(sizePolicy)
         self.deleteButton.setObjectName("deleteButton")
         self.horizontalLayout.addWidget(self.deleteButton)
         self.editButton = QtWidgets.QPushButton(ShortcutWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.editButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.editButton.sizePolicy().hasHeightForWidth()
+        )
         self.editButton.setSizePolicy(sizePolicy)
         self.editButton.setObjectName("editButton")
         self.horizontalLayout.addWidget(self.editButton)
         self.shortcutIcon = QtWidgets.QLabel(ShortcutWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.shortcutIcon.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.shortcutIcon.sizePolicy().hasHeightForWidth()
+        )
         self.shortcutIcon.setSizePolicy(sizePolicy)
         self.shortcutIcon.setStyleSheet("margin-left:25px")
         self.shortcutIcon.setText("")
-        self.shortcutIcon.setPixmap(QtGui.QPixmap(":/ShortcutManager/icons/default-shortcut-desk.png"))
+        self.shortcutIcon.setPixmap(
+            QtGui.QPixmap(":/ShortcutManager/icons/default-shortcut-desk.png")
+        )
         self.shortcutIcon.setObjectName("shortcutIcon")
         self.horizontalLayout.addWidget(self.shortcutIcon)
         self.shortcutName = QtWidgets.QLabel(ShortcutWidget)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed
+        )
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.shortcutName.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.shortcutName.sizePolicy().hasHeightForWidth()
+        )
         self.shortcutName.setSizePolicy(sizePolicy)
         self.shortcutName.setObjectName("shortcutName")
         self.horizontalLayout.addWidget(self.shortcutName)
