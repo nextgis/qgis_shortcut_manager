@@ -49,7 +49,7 @@ class ShortcutManagerDialog(QDialog, Ui_ShortcutManagerDialog):
         dlg = ShortcutCreator(self, self._manager.createShortcut)
         dlg.show()
         # Run the dialog event loop
-        result = dlg.exec_()
+        result = dlg.exec()
         # See if OK was pressed
         if result:
             pass
