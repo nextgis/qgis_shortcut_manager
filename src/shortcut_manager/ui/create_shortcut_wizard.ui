@@ -179,7 +179,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap>:/plugins/ShortcutManager/icon.png</pixmap>
+         <pixmap>:/plugins/shortcut_manager/icons/icon.png</pixmap>
         </property>
        </widget>
       </item>

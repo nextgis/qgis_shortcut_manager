@@ -24,7 +24,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>:/plugins/ShortcutManager/icon.png</normaloff>:/plugins/ShortcutManager/icon.png</iconset>
+    <normaloff>:/plugins/shortcut_manager/icons/icon.png</normaloff>:/plugins/shortcut_manager/icons/icon.png</iconset>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -123,7 +123,7 @@
           <string notr="true"/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../resources.qrc">:/ShortcutManager/icons/icon.png</pixmap>
+          <pixmap resource="../resources.qrc">:/icons/icon.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>false</bool>
@@ -201,7 +201,6 @@
   </layout>
  </widget>
  <resources>
-  <include location="../resources.qrc"/>
  </resources>
  <connections>
   <connection>

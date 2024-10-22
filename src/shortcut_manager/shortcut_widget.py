@@ -23,7 +23,7 @@
 
 from .shortcut_utils import getShortcutIcon
 from .shortcut_settings import ShortcutSettings
-from .shortcut_widget_ui_base import Ui_ShortcutWidget
+from .ui.ui_shortcut_widget import Ui_ShortcutWidget
 
 from qgis.PyQt.QtWidgets import QWidget
 from qgis.PyQt.QtCore import QObject, QSize

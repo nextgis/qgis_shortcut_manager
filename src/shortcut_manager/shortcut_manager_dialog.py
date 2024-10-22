@@ -22,7 +22,7 @@
 """
 
 from .shortcut_creator import ShortcutCreator
-from .shortcut_manager_dialog_ui_base import Ui_ShortcutManagerDialog
+from .ui.ui_shortcut_manager_dialog_ui_base import Ui_ShortcutManagerDialog
 
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QDialog
@@ -35,7 +35,7 @@ class ShortcutManagerDialog(QDialog, Ui_ShortcutManagerDialog):
         QDialog.__init__(self)
 
         self.setupUi(self)
-        self.setWindowIcon(QIcon(":/ShortcutManager/icons/icon.png"))
+        self.setWindowIcon(QIcon(":/icons/icon.png"))
         self.pushButton.clicked.connect(self.createShortcut)
 
         # self._createShortcutFunction = createShortcutFunction
