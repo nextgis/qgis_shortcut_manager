@@ -47,7 +47,7 @@ class ShortcutWidget(QWidget, Ui_ShortcutWidget):
         dlg = ShortcutSettings(self, self._shortcut)
         dlg.show()
         # Run the dialog event loop
-        result = dlg.exec_()
+        result = dlg.exec()
         # See if OK was pressed
         if result:
             # Do something useful here - delete the line containing pass and

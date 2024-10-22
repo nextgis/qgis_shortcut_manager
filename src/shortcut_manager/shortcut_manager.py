@@ -198,7 +198,7 @@ class ShortcutManagerPlugin:
         self.manager.dialog.show()
 
         # Run the dialog event loop
-        result = self.manager.dialog.exec_()
+        result = self.manager.dialog.exec()
 
         # See if OK was pressed
         if result:
@@ -208,4 +208,4 @@ class ShortcutManagerPlugin:
 
     def about(self):
         dialog = about_dialog.AboutDialog(os.path.basename(self.plugin_dir))
-        dialog.exec_()
+        dialog.exec()
