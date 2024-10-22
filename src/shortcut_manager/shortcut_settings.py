@@ -22,7 +22,7 @@
 """
 
 from .shortcut_utils import getShortcutIcon
-from .shortcut_settings_ui_base import Ui_ShortcutSettings
+from .ui.ui_shortcut_settings import Ui_ShortcutSettings
 from .__init__ import default_icons_dir
 
 from qgis.PyQt.QtGui import QIcon

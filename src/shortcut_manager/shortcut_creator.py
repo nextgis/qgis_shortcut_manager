@@ -21,7 +21,7 @@
  ***************************************************************************/
 """
 
-from .shortcut_creator_ui_base import Ui_CreateShortcutWizard
+from .ui.ui_create_shortcut_wizard import Ui_CreateShortcutWizard
 from .shortcut_utils import getIconByURL, getDefaultIcon
 from .__init__ import default_icons_dir
 
