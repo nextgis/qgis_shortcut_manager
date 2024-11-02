@@ -58,7 +58,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../resources.qrc">:/icons/default-shortcut-desk.png</pixmap>
+      <pixmap resource="../resources.qrc">:/plugins/shortcut_manager/icons/default-shortcut-desk.png</pixmap>
      </property>
     </widget>
    </item>

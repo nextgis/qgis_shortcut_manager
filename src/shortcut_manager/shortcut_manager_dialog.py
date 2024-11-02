@@ -35,7 +35,7 @@ class ShortcutManagerDialog(QDialog, Ui_ShortcutManagerDialog):
         QDialog.__init__(self)
 
         self.setupUi(self)
-        self.setWindowIcon(QIcon(":/icons/icon.png"))
+        self.setWindowIcon(QIcon(":/plugins/shortcut_manager/icons/icon.png"))
         self.pushButton.clicked.connect(self.createShortcut)
 
         # self._createShortcutFunction = createShortcutFunction

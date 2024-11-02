@@ -123,7 +123,7 @@
           <string notr="true"/>
          </property>
          <property name="pixmap">
-          <pixmap resource="../resources.qrc">:/icons/icon.png</pixmap>
+          <pixmap resource="../resources.qrc">:/plugins/shortcut_manager/icons/icon.png</pixmap>
          </property>
          <property name="scaledContents">
           <bool>false</bool>
