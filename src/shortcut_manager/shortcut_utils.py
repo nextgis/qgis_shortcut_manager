@@ -51,13 +51,15 @@ def getShortcutIcon(iconPath=None, uri=None):
 def getDefaultIcon(shortcutType):
     if shortcutType == "desktop":
         # icon_path = os.path.join(defaultIconPath, "default-shortcut-desk.png")
-        icon_path = ":/ShortcutManager/icons/default-shortcut-desk.png"
+        icon_path = (
+            ":/plugins/shortcut_manager/icons/default-shortcut-desk.png"
+        )
     elif shortcutType == "web":
         # icon_path = os.path.join(defaultIconPath, "default-shortcut-web.png")
-        icon_path = ":/ShortcutManager/icons/default-shortcut-web.png"
+        icon_path = ":/plugins/shortcut_manager/icons/default-shortcut-web.png"
     else:
         # icon_path = os.path.join(defaultIconPath, "default-shortcut.png")
-        icon_path = ":/ShortcutManager/icons/default-shortcut.png"
+        icon_path = ":/plugins/shortcut_manager/icons/default-shortcut.png"
 
     return QIcon(icon_path)
 

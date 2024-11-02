@@ -23,7 +23,7 @@
 
 import os
 import weakref
-# import resources
+from . import resources  # noqa: F401
 
 from .shortcut import Shorcut, shortcutsFromSettings
 from .shortcut_manager_dialog import ShortcutManagerDialog
@@ -163,7 +163,7 @@ class ShortcutManagerPlugin:
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
 
-        shortcutManageIcon = QIcon(":/icons/icon.png")
+        shortcutManageIcon = QIcon(":/plugins/shortcut_manager/icons/icon.png")
         shortcutManageText = "Shortcut manager"
         self.add_action(
             shortcutManageIcon,
