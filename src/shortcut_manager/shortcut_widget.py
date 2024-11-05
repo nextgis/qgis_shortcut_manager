@@ -23,13 +23,13 @@
 
 from .shortcut_utils import getShortcutIcon
 from .shortcut_settings import ShortcutSettings
-from .ui.ui_shortcut_widget import Ui_ShortcutWidget
+from .ui.shortcut_widget_base import Ui_ShortcutWidgetBase
 
 from qgis.PyQt.QtWidgets import QWidget
 from qgis.PyQt.QtCore import QObject, QSize
 
 
-class ShortcutWidget(QWidget, Ui_ShortcutWidget):
+class ShortcutWidget(QWidget, Ui_ShortcutWidgetBase):
     def __init__(self, parent, shortcut):
         QWidget.__init__(self)
         self.setupUi(self)

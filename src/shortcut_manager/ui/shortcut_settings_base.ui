@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>ShortcutSettings</class>
+ <class>ShortcutSettingsBase</class>
  <widget class="QDialog" name="ShortcutSettings">
   <property name="windowModality">
    <enum>Qt::NonModal</enum>

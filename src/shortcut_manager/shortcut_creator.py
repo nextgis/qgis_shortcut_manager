@@ -21,7 +21,7 @@
  ***************************************************************************/
 """
 
-from .ui.ui_create_shortcut_wizard import Ui_CreateShortcutWizard
+from .ui.create_shortcut_wizard_base import Ui_CreateShortcutWizardBase
 from .shortcut_utils import getIconByURL, getDefaultIcon
 from .__init__ import default_icons_dir
 
@@ -32,7 +32,7 @@ from qgis.PyQt.QtCore import QSize
 import os
 
 
-class ShortcutCreator(QWizard, Ui_CreateShortcutWizard):
+class ShortcutCreator(QWizard, Ui_CreateShortcutWizardBase):
     def __init__(self, parent, createShortcutFunction):
         QWizard.__init__(self, parent)
         self.setupUi(self)

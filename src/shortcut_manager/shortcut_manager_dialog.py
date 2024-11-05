@@ -22,7 +22,7 @@
 """
 
 from .shortcut_creator import ShortcutCreator
-from .ui.ui_shortcut_manager_dialog_ui_base import Ui_ShortcutManagerDialog
+from .ui.shortcut_manager_dialog_ui_base import Ui_ShortcutManagerDialog
 
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QDialog
