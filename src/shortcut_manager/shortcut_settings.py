@@ -22,7 +22,7 @@
 """
 
 from .shortcut_utils import getShortcutIcon
-from .ui.ui_shortcut_settings import Ui_ShortcutSettings
+from .ui.shortcut_settings_base import Ui_ShortcutSettingsBase
 from .__init__ import default_icons_dir
 
 from qgis.PyQt.QtGui import QIcon
@@ -32,7 +32,7 @@ from qgis.PyQt.QtCore import QObject, QSize
 import os
 
 
-class ShortcutSettings(QDialog, Ui_ShortcutSettings):
+class ShortcutSettings(QDialog, Ui_ShortcutSettingsBase):
     def __init__(self, parent, shortcut):
         QDialog.__init__(self, parent)
         self.setupUi(self)
