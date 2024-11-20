@@ -1,42 +1,17 @@
-# This file contains metadata for your plugin. Since
-# version 2.0 of QGIS this is the proper way to supply
-# information about a plugin. The old method of
-# embedding metadata in __init__.py will
-# is no longer supported since version 2.0.
-
-# This file should be included when you package your plugin.# Mandatory items:
-
 [general]
 name=Shortcut Manager
 description=A shortcuts toolbar to run external programs
 description[ru]=Панель ярлыков для запуска внешних программ
 about=Create a shortcuts toolbar to run external programs and open web pages. Developed by NextGIS. Any feedback is welcome at https://nextgis.com/contact
 about[ru]=Создаёт панель ярлыков для запуска внешних программ и открытия веб-страниц. Разработан компанией NextGIS. Любые отзывы приветствуются на https://nextgis.com/contact.
-version=1.1.0
-qgisMinimumVersion=3.0
+version=1.2.0
+qgisMinimumVersion=3.22
 qgisMaximumVersion=3.99
 
 icon = icons/icon.png
 
 author=NextGIS
 email=info@nextgis.com
-
-# End of mandatory metadata
-
-# Optional items:
-# Uncomment the following line and add your changelog:
-changelog=
-    1.x.x
-        * Added about dialog
-    1.1.0:
-        * QGIS 3 port
-    1.0.9:
-        * Fix problem with cyrillic in windows user name.
-    1.0.8:
-        * Fix #6 Open a file with the default application
-    1.0.7:
-        * Fix #4 Cyrillic symbols in the path to the executable file
-        * Add ability to set the default icons in shortcut settings dialog
 
 tags=shortcuts
 
@@ -46,8 +21,19 @@ repository=https://github.com/nextgis/qgis_shortcut_manager/
 video=https://youtu.be/cVYAEHkRkG0
 video[ru]=https://youtu.be/VV0uLWJpaUY
 
-# experimental flag
 experimental=False
-
-# deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
+
+changelog=
+    1.2.0
+        * Updated the "About plugin" dialog
+        * Added plugin item to help menu
+    1.1.0:
+        * QGIS 3 port
+    1.0.9:
+        * Fix problem with cyrillic in windows user name.
+    1.0.8:
+        * Fix #6 Open a file with the default application
+    1.0.7:
+        * Fix #4 Cyrillic symbols in the path to the executable file
+        * Add ability to set the default icons in shortcut settings dialog
