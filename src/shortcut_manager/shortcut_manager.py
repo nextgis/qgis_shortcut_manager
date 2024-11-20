@@ -164,7 +164,7 @@ class ShortcutManagerPlugin:
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
 
         shortcutManageIcon = QIcon(":/plugins/shortcut_manager/icons/icon.png")
-        shortcutManageText = "Shortcut manager"
+        shortcutManageText = "Shortcut Manager"
         self.add_action(
             shortcutManageIcon,
             shortcutManageText,
@@ -180,6 +180,14 @@ class ShortcutManagerPlugin:
             parent=self.iface.mainWindow(),
             add_to_toolbar=False,
         )
+
+        self.__show_help_action = QAction(
+            shortcutManageIcon, shortcutManageText
+        )
+        self.__show_help_action.triggered.connect(self.about)
+        plugin_help_menu = self.iface.pluginHelpMenu()
+        assert plugin_help_menu is not None
+        plugin_help_menu.addAction(self.__show_help_action)
 
     def unload(self):
         """Removes the plugin menu item and icon from QGIS GUI."""

@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="plugins/shortcut_manager" >
         <file>icons/icon.png</file>
+        <file>icons/nextgis_logo.svg</file>
         <file>icons/default-shortcut-web.png</file>
         <file>icons/default-shortcut-desk.png</file>
         <file>icons/default-shortcut.png</file>
